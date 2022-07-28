@@ -1,0 +1,45 @@
+@startuml stateDiagram
+
+state "Menú Pricipal" as main
+
+state "Historial de Cotizaciones" as hist
+
+state "Realizar Cotización" as cot
+
+state "Camisa (manga)" as camMan
+
+state "Camisa (cuello)" as camCue
+
+state "Pantalon (chupin)" as pantChup
+
+state "Calidad" as cal
+
+state "Precio" as precio
+
+state "Cantidad" as cant
+
+state "Resultado" as res
+
+[*] --> main
+main --> hist : 1
+main --> cot : 2
+main --> [*] : 3
+main --> main : otro
+hist --> main : 3
+hist --> hist : otro
+cot --> camMan : 1
+cot --> pantChup : 2
+pantChup --> pantChup : otro
+cot --> cot : otro
+camMan --> camCue : 1 || 2
+camMan --> camMan : otro
+camCue --> camCue : otro
+camCue --> cal : 1 || 2
+pantChup --> cal : 1 || 2
+cal --> precio : 1 || 2
+precio --> cant : cualquiera
+cant --> cant : cantidad > stock
+cant --> res : cantidad <= stock
+res --> main : 3
+res --> res : otro
+@enduml
