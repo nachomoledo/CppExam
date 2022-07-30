@@ -1,4 +1,5 @@
 #include <homeScreen.h>
+#include <uiManager.h>
 #include <iostream>
 
 const std::string APP_NAME = "COTIZADOR EXPRESS";
@@ -15,5 +16,9 @@ int main() {
     homeScreen.addOption(2, "Realizar Cotización");
     homeScreen.addOption(3, "Salir");
     homeScreen.print();
+    UserInputManager userInputManager;
+    UIManager uiManager(userInputManager);
+    userInputManager.getUserInput();
+
     return 0;
 }

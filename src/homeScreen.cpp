@@ -17,12 +17,12 @@ HomeScreen::HomeScreen(std::string title,
                        std::string storeAddress,
                        std::string sellerName,
                        std::string sellerSurname,
-                       std::string sellerId)
-                       //std::list<std::string> optionList)
+                       std::string sellerId,
+                       std::list<std::string> optionList)
     : BaseScreen(title), m_storeName(storeName), 
       m_storeAddress(storeAddress), m_sellerName(sellerName),
-      m_sellerSurname(sellerSurname), m_sellerId(sellerId)
-      //, m_optionList(optionList)
+      m_sellerSurname(sellerSurname), m_sellerId(sellerId),
+      m_optionList(optionList)
 {
 
 }                      
@@ -51,7 +51,6 @@ std::string HomeScreen::content()
     {
         str.append(s + "\n");
     }
-
 
     return str;
 }

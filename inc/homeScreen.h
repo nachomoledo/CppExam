@@ -12,9 +12,8 @@ class HomeScreen : public BaseScreen
                    std::string storeAddress,
                    std::string sellerName,
                    std::string sellerSurname,
-                   std::string sellerId
-//                   ,
-//                   std::list<std::string> optionList = {}
+                   std::string sellerId,
+                   std::list<std::string> optionList = {}
                    );
         void addOption(int number, std::string option);
 
@@ -27,6 +26,5 @@ class HomeScreen : public BaseScreen
         std::string m_sellerName;
         std::string m_sellerSurname;
         std::string m_sellerId;
-        //std::list<std::string> m_optionList = {"hola", "como", "estas"};
         std::list<std::string> m_optionList;
 };
