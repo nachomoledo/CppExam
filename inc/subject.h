@@ -1,3 +1,6 @@
+#ifndef I_SUBJECT
+#define I_SUBJECT
+
 #include "observer.h"
 
 class ISubject {
@@ -8,3 +11,5 @@ class ISubject {
     private:
         virtual void notify(void) = 0;
 };
+
+#endif

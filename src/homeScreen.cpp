@@ -1,12 +1,6 @@
 #include "homeScreen.h"
 #include <iostream>
 
-HomeScreen::HomeScreen() 
-    : BaseScreen()
-{
-    
-}
-
 HomeScreen::~HomeScreen()
 {
 
@@ -17,12 +11,10 @@ HomeScreen::HomeScreen(std::string title,
                        std::string storeAddress,
                        std::string sellerName,
                        std::string sellerSurname,
-                       std::string sellerId,
-                       std::list<std::string> optionList)
+                       std::string sellerId)
     : BaseScreen(title), m_storeName(storeName), 
       m_storeAddress(storeAddress), m_sellerName(sellerName),
-      m_sellerSurname(sellerSurname), m_sellerId(sellerId),
-      m_optionList(optionList)
+      m_sellerSurname(sellerSurname), m_sellerId(sellerId)
 {
 
 }                      
@@ -46,17 +38,10 @@ std::string HomeScreen::content()
     str.append("SELECCIONE UNA OPIÓN DEL MENÚ:");
     str.append("\n");
     str.append("\n");
-
-    for (std::string s : m_optionList)
-    {
-        str.append(s + "\n");
-    }
-
+    str.append("1) Historial de Cotizaciones");
+    str.append("\n");
+    str.append("2) Realizar Cotización");
+    str.append("\n");
+    str.append("3) Salir");
     return str;
 }
-
-void HomeScreen::addOption(int number, std::string option)
-{
-    m_optionList.push_back(std::to_string(number) + ") " + option);
-}
-

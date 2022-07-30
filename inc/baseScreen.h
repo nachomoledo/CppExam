@@ -1,3 +1,6 @@
+#ifndef BASE_SCREEN
+#define BASE_SCREEN
+
 #include <string>
 
 #define WIDTH 80
@@ -14,3 +17,5 @@ class BaseScreen
         static std::string horizontalSeparator(void);
         virtual std::string content(void) = 0;
 };
+
+#endif

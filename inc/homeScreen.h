@@ -1,6 +1,8 @@
+#ifndef HOME_SCREEN
+#define HOME_SCREEN
+
 #include "baseScreen.h"
 #include <list>
-#include <vector>
 
 class HomeScreen : public BaseScreen
 {
@@ -12,10 +14,7 @@ class HomeScreen : public BaseScreen
                    std::string storeAddress,
                    std::string sellerName,
                    std::string sellerSurname,
-                   std::string sellerId,
-                   std::list<std::string> optionList = {}
-                   );
-        void addOption(int number, std::string option);
+                   std::string sellerId);
 
     protected:
         std::string content(void) override;
@@ -26,5 +25,6 @@ class HomeScreen : public BaseScreen
         std::string m_sellerName;
         std::string m_sellerSurname;
         std::string m_sellerId;
-        std::list<std::string> m_optionList;
 };
+
+#endif

@@ -1,0 +1,13 @@
+#ifndef DEFINES
+#define DEFINES
+
+#include <string>
+
+#define APP_NAME "COTIZADOR EXPRESS"
+#define STORE_NAME "STORE NAME"
+#define STORE_ADDRESS "STORE ADDRESS"
+#define SELLER_NAME "SELLER NAME"
+#define SELLER_SURNAME "SELLER SURNAME"
+#define SELLER_ID "0001"
+
+#endif

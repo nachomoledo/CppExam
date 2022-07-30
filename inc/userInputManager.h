@@ -1,3 +1,6 @@
+#ifndef USER_INPUT_MANAGER
+#define USER_INPUT_MANAGER
+
 #include "subject.h"
 #include <list>
 #include <iostream>
@@ -15,3 +18,5 @@ class UserInputManager : public ISubject
         int m_lastInput;
         void notify(void) override;
 };
+
+#endif
