@@ -1,0 +1,86 @@
+@startuml classDiagram
+skinparam monochrome true
+hide circle
+show enum circle
+hide empty members
+
+class "Vendedor" as vend
+{
+- nombre
+- apellido
+- codigo
+}
+
+class "Cotización" as cot
+{
+- id
+- hora
+- fecha
+- codigoVendedor
+- prendaId
+- cantidad
+}
+
+class "Historial" as hist
+{
+- idVendedor
+- cotizaciones[]
+}
+
+class "Tienda" as tienda
+{
+- nombre
+- direccion
+- prendas[]
+}
+
+class "Prenda" as prendaId
+{
+    - calidad
+    - precio
+    - stock
+}
+
+enum "Calidad" as cal
+{
+    Standard
+    Premium
+}
+
+class "Pantalon" as pant
+{
+
+}
+
+class "Pantalon común" as comun
+{
+
+}
+
+class "Pantalon chupin" as chupin
+{
+
+}
+
+class "Camisa" as cam
+{
+
+}
+
+class "Camisa manga corta" as corta
+{
+
+}
+
+class "Camisa manga larga" as larga
+{
+
+}
+
+enum "Cuello" as cuello
+{
+    Comun
+    Mao
+}
+
+@enduml

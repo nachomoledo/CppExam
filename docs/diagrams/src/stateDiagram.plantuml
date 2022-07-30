@@ -37,6 +37,7 @@ camCue --> camCue : otro
 camCue --> cal : 1 || 2
 pantChup --> cal : 1 || 2
 cal --> precio : 1 || 2
+cal --> cal : otro
 precio --> cant : cualquiera
 cant --> cant : cantidad > stock
 cant --> res : cantidad <= stock
