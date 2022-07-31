@@ -1,8 +1,9 @@
 #include "utils.h"
+#include "defines.h"
 
 #define WIDTH 80
 
-std::string Utils::verticalSeparator(void)
+std::string Utils::verticalSeparator()
 {
     std::string str;
     str.append("\n");
@@ -11,7 +12,12 @@ std::string Utils::verticalSeparator(void)
     return str;
 }
 
-std::string Utils::horizontalSeparator(void)
+std::string Utils::horizontalSeparator()
 {
     return std::string(" | ");    
+}
+
+std::string Utils::backMessage()
+{
+    return std::string("Presiona " + std::to_string(BACK_VALUE) + " para volver al menú principal");    
 }

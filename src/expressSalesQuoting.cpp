@@ -1,4 +1,5 @@
 #include "expressSalesQuoting.h"
+#include "defines.h"
 
 ExpressSalesQuoting::ExpressSalesQuoting(UserInputManager &userInputManager)
     : m_userInputManager(userInputManager), m_isRunning(false), m_exit(false)
@@ -46,7 +47,7 @@ void ExpressSalesQuoting::update(int userInput)
         {
             m_uiManager.changeScreen(ScreenId::NEW_SALES_QUOTE);
         }
-        else if (3 == userInput)
+        else if (BACK_VALUE == userInput)
         {
             m_exit = true;
         }
@@ -58,7 +59,7 @@ void ExpressSalesQuoting::update(int userInput)
     break;
     case ScreenId::SALES_QUOTE_HISTORY:
     {
-        if (3 == userInput)
+        if (BACK_VALUE == userInput)
         {
             m_uiManager.changeScreen(ScreenId::HOME);
         }
@@ -78,7 +79,7 @@ void ExpressSalesQuoting::update(int userInput)
         {
             m_uiManager.changeScreen(ScreenId::PANT_TYPE);
         }
-        else if (3 == userInput)
+        else if (BACK_VALUE == userInput)
         {
             m_uiManager.changeScreen(ScreenId::HOME);
         }
@@ -94,7 +95,7 @@ void ExpressSalesQuoting::update(int userInput)
         {
             m_uiManager.changeScreen(ScreenId::SHIRT_COLLAR);
         }
-        else if (3 == userInput)
+        else if (BACK_VALUE == userInput)
         {
             m_uiManager.changeScreen(ScreenId::HOME);
         }
@@ -110,7 +111,7 @@ void ExpressSalesQuoting::update(int userInput)
         {
             m_uiManager.changeScreen(ScreenId::QUALITY);
         }
-        else if (3 == userInput)
+        else if (BACK_VALUE == userInput)
         {
             m_uiManager.changeScreen(ScreenId::HOME);
         }
@@ -126,7 +127,7 @@ void ExpressSalesQuoting::update(int userInput)
         {
             m_uiManager.changeScreen(ScreenId::QUALITY);
         }
-        else if (3 == userInput)
+        else if (BACK_VALUE == userInput)
         {
             m_uiManager.changeScreen(ScreenId::HOME);
         }
@@ -142,7 +143,7 @@ void ExpressSalesQuoting::update(int userInput)
         {
             m_uiManager.changeScreen(ScreenId::UNIT_PRICE);
         }
-        else if (3 == userInput)
+        else if (BACK_VALUE == userInput)
         {
             m_uiManager.changeScreen(ScreenId::HOME);
         }
@@ -159,6 +160,10 @@ void ExpressSalesQuoting::update(int userInput)
         {
             m_uiManager.changeScreen(ScreenId::QUANTITY);
         }
+        else if (BACK_VALUE == userInput)
+        {
+            m_uiManager.changeScreen(ScreenId::HOME);
+        }
         else
         {
             reload = true;
@@ -173,6 +178,10 @@ void ExpressSalesQuoting::update(int userInput)
         {
             m_uiManager.changeScreen(ScreenId::TOTAL_PRICE);
         }
+        else if (BACK_VALUE == userInput)
+        {
+            m_uiManager.changeScreen(ScreenId::HOME);
+        }        
         else
         {
             reload = true;
@@ -181,7 +190,7 @@ void ExpressSalesQuoting::update(int userInput)
     break;    
     case ScreenId::TOTAL_PRICE:
     {
-        if (3 == userInput)
+        if (BACK_VALUE == userInput)
         {
             m_uiManager.changeScreen(ScreenId::HOME);
         }
