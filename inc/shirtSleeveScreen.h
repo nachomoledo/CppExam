@@ -1,5 +1,5 @@
-#ifndef SHIRT_SLEEVE_SCREEN
-#define SHIRT_SLEEVE_SCREEN
+#ifndef SHIRT_SLEEVE_SCREEN_H
+#define SHIRT_SLEEVE_SCREEN_H
 
 #include "baseScreen.h"
 #include <list>

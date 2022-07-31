@@ -1,5 +1,5 @@
-#ifndef I_USER_INPUT_OBSERVER
-#define I_USER_INPUT_OBSERVER
+#ifndef I_USER_INPUT_OBSERVER_H
+#define I_USER_INPUT_OBSERVER_H
 
 class IUserInputObserver {
  public:

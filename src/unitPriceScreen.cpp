@@ -1,18 +1,18 @@
-#include "shirtSleeveScreen.h"
+#include "unitPriceScreen.h"
 #include "utils.h"
 
-ShirtSleeveScreen::~ShirtSleeveScreen()
+UnitPriceScreen::~UnitPriceScreen()
 {
 
 }
 
-ShirtSleeveScreen::ShirtSleeveScreen(std::string title)
+UnitPriceScreen::UnitPriceScreen(std::string title)
     : BaseScreen(title)
 {
 
 }
 
-std::string ShirtSleeveScreen::content()
+std::string UnitPriceScreen::content()
 {
 {
     std::string str;
@@ -21,11 +21,7 @@ std::string ShirtSleeveScreen::content()
     str.append("Presiona 3 para volver al menú principal");
     str.append(Utils::verticalSeparator());
     str.append("\n");
-    str.append("PASO 2.a: La camisa a cotizar, ¿Es Manga Corta?:");
-    str.append("\n");
-    str.append("1) Sí");
-    str.append("\n");
-    str.append("2) No");
+    str.append("PASO 4: Ingrese el precio unitario de la prenda a cotizar:");
     str.append(Utils::verticalSeparator());
     return str;
 }

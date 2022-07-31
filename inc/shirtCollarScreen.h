@@ -1,5 +1,5 @@
-#ifndef SHIRT_COLLAR_SCREEN
-#define SHIRT_COLLAR_SCREEN
+#ifndef SHIRT_COLLAR_SCREEN_H
+#define SHIRT_COLLAR_SCREEN_H
 
 #include "baseScreen.h"
 #include <list>

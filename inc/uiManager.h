@@ -1,9 +1,7 @@
-#ifndef UI_MANAGER
-#define UI_MANAGER
+#ifndef UI_MANAGER_H
+#define UI_MANAGER_H
 
 #include "baseScreen.h"
-#include "userInputManager.h"
-
 #include <map>
 
 enum class ScreenId
@@ -15,23 +13,24 @@ enum class ScreenId
     SHIRT_SLEEVE,
     PANT_TYPE,
     QUALITY,
-    SINGLE_PRICE,
-    AMOUNT,
-    FINAL_PRICE
+    UNIT_PRICE,
+    QUANTITY,
+    TOTAL_PRICE
 };
 
-class UIManager : public IUserInputObserver
+class UIManager
 {
     public:
-        UIManager(UserInputManager &subject);
+        UIManager();
         virtual ~UIManager(void);
-        void update(int userInput) override;
         void changeScreen(ScreenId newScreen);
+        void setLastSalesQuotation(std::string lastSalesQuotation);
+        ScreenId getCurrentScreen(void);
 
     private:
         std::map<ScreenId, BaseScreen *> m_screenMap;
-        int m_lastInput;
-        UserInputManager &m_subject;
+        std::string m_lastSalesQuotation;
+        ScreenId m_currentScreen;
         void clearScreen(void);
 };
 

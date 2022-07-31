@@ -1,4 +1,5 @@
 #include "homeScreen.h"
+#include "utils.h"
 #include <iostream>
 
 HomeScreen::~HomeScreen()
@@ -23,17 +24,17 @@ std::string HomeScreen::content()
 {
     std::string str;
     str.append(m_title);
-    str.append(verticalSeparator());
+    str.append(Utils::verticalSeparator());
     str.append(m_storeName);
-    str.append(horizontalSeparator());
+    str.append(Utils::horizontalSeparator());
     str.append(m_storeAddress);
-    str.append(verticalSeparator());
+    str.append(Utils::verticalSeparator());
     str.append(m_sellerName);
     str.append(" ");
     str.append(m_sellerSurname);
-    str.append(horizontalSeparator());
+    str.append(Utils::horizontalSeparator());
     str.append(m_sellerId);
-    str.append(verticalSeparator());
+    str.append(Utils::verticalSeparator());
     str.append("\n");
     str.append("SELECCIONE UNA OPIÓN DEL MENÚ:");
     str.append("\n");

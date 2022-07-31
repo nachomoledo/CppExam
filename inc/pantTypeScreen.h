@@ -1,5 +1,5 @@
-#ifndef PANT_TYPE_SCREEN
-#define PANT_TYPE_SCREEN
+#ifndef PANT_TYPE_SCREEN_H
+#define PANT_TYPE_SCREEN_H
 
 #include "baseScreen.h"
 #include <list>

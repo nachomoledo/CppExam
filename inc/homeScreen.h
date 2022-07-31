@@ -1,5 +1,5 @@
-#ifndef HOME_SCREEN
-#define HOME_SCREEN
+#ifndef HOME_SCREEN_H
+#define HOME_SCREEN_H
 
 #include "baseScreen.h"
 #include <list>

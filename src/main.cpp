@@ -1,9 +1,8 @@
-#include <uiManager.h>
+#include <expressSalesQuoting.h>
+#include <userInputManager.h>
 
 int main() {
     UserInputManager userInputManager;
-    UIManager uiManager(userInputManager);
-    userInputManager.getUserInput();
-
+    ExpressSalesQuoting expressSalesQuoting(userInputManager);
     return 0;
 }

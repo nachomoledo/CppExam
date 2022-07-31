@@ -1,5 +1,12 @@
 #include "userInputManager.h"
-  
+
+UserInputManager::UserInputManager()
+    : m_lastInput(0), m_awaitingInput(false)
+{
+
+}
+
+
 UserInputManager::~UserInputManager()
 {
 
@@ -17,8 +24,14 @@ void UserInputManager::detach(IUserInputObserver *observer)
 
 void UserInputManager::getUserInput() 
 {
-    std::cin >> m_lastInput;
-    notify();
+    if(false == m_awaitingInput)
+    {
+        m_awaitingInput = true;
+        std::cin >> m_lastInput;
+        m_awaitingInput = false;
+        notify();
+    }
+
 }
 
 void UserInputManager::notify()

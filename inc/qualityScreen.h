@@ -1,5 +1,5 @@
-#ifndef QUALITY_SCREEN
-#define QUALITY_SCREEN
+#ifndef QUALITY_SCREEN_H
+#define QUALITY_SCREEN_H
 
 #include "baseScreen.h"
 #include <list>

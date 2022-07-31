@@ -1,5 +1,5 @@
-#ifndef HISTORY_SCREEN
-#define HISTORY_SCREEN
+#ifndef HISTORY_SCREEN_H
+#define HISTORY_SCREEN_H
 
 #include "baseScreen.h"
 #include <list>

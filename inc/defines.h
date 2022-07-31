@@ -1,7 +1,5 @@
-#ifndef DEFINES
-#define DEFINES
-
-#include <string>
+#ifndef DEFINES_H
+#define DEFINES_H
 
 #define APP_NAME "COTIZADOR EXPRESS"
 #define STORE_NAME "STORE NAME"

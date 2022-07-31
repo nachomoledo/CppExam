@@ -1,30 +1,29 @@
-#include "amountScreen.h"
+#include "quantityScreen.h"
+#include "utils.h"
 
-AmountScreen::~AmountScreen()
+QuantityScreen::~QuantityScreen()
 {
 
 }
 
-AmountScreen::AmountScreen(std::string title)
+QuantityScreen::QuantityScreen(std::string title)
     : BaseScreen(title)
 {
 
 }
 
-std::string AmountScreen::content()
-{
+std::string QuantityScreen::content()
 {
     std::string str;
     str.append(m_title);
-    str.append(verticalSeparator());
+    str.append(Utils::verticalSeparator());
     str.append("Presiona 3 para volver al menú principal");
-    str.append(verticalSeparator());
+    str.append(Utils::verticalSeparator());
     str.append("\n");
     str.append("INFORMACIÓN");
     str.append("EXISTE x CANTIDAD DE UNIDADES EN STOCK DE LA PRENDA SELECCIONADA");
     str.append("\n");
     str.append("PASO 5: Ingrese la cantidad de unidades a cotizar:");
-    str.append(verticalSeparator());
+    str.append(Utils::verticalSeparator());
     return str;
-}
 }

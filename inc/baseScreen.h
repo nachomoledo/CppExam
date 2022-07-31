@@ -1,9 +1,8 @@
-#ifndef BASE_SCREEN
-#define BASE_SCREEN
+#ifndef BASE_SCREEN_H
+#define BASE_SCREEN_H
 
+#include "utils.h"
 #include <string>
-
-#define WIDTH 80
 
 class BaseScreen
 {
@@ -13,8 +12,6 @@ class BaseScreen
         void print(void);
     protected:
         std::string m_title;
-        static std::string verticalSeparator(void);
-        static std::string horizontalSeparator(void);
         virtual std::string content(void) = 0;
 };
 

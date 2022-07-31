@@ -1,5 +1,5 @@
-#ifndef I_SUBJECT
-#define I_SUBJECT
+#ifndef I_SUBJECT_H
+#define I_SUBJECT_H
 
 #include "observer.h"
 
