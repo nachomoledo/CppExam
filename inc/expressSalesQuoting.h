@@ -9,10 +9,13 @@ class ExpressSalesQuoting : public IUserInputObserver
     public:
         ExpressSalesQuoting(UserInputManager &userInputManager);
         void update(int userInput) override;
+        void run(void);
 
     private:
         UIManager m_uiManager;
         UserInputManager &m_userInputManager;
+        bool m_isRunning;
+        bool m_exit;
 };
 
 #endif
