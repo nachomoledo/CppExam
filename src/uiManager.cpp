@@ -66,5 +66,5 @@ void UIManager::changeScreen(ScreenId newScreen)
 
 ScreenId UIManager::getCurrentScreen()
 {
-    m_currentScreen;
+    return m_currentScreen;
 }

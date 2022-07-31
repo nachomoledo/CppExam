@@ -58,52 +58,142 @@ void ExpressSalesQuoting::update(int userInput)
     break;
     case ScreenId::SALES_QUOTE_HISTORY:
     {
-        
+        if (3 == userInput)
+        {
+            m_uiManager.changeScreen(ScreenId::HOME);
+        }
+        else
+        {
+            reload = true;
+        }        
     }
     break;
     case ScreenId::NEW_SALES_QUOTE:
     {
-
-    }
-    break;
-    case ScreenId::SHIRT_COLLAR:
-    {
-
+        if (1 == userInput)
+        {
+            m_uiManager.changeScreen(ScreenId::SHIRT_SLEEVE);
+        }
+        else if (2 == userInput)
+        {
+            m_uiManager.changeScreen(ScreenId::PANT_TYPE);
+        }
+        else if (3 == userInput)
+        {
+            m_uiManager.changeScreen(ScreenId::HOME);
+        }
+        else
+        {
+            reload = true;
+        }    
     }
     break;
     case ScreenId::SHIRT_SLEEVE:
     {
-
+        if ((1 == userInput) || (2 == userInput))
+        {
+            m_uiManager.changeScreen(ScreenId::SHIRT_COLLAR);
+        }
+        else if (3 == userInput)
+        {
+            m_uiManager.changeScreen(ScreenId::HOME);
+        }
+        else
+        {
+            reload = true;
+        }   
     }
     break;
+    case ScreenId::SHIRT_COLLAR:
+    {
+        if ((1 == userInput) || (2 == userInput))
+        {
+            m_uiManager.changeScreen(ScreenId::QUALITY);
+        }
+        else if (3 == userInput)
+        {
+            m_uiManager.changeScreen(ScreenId::HOME);
+        }
+        else
+        {
+            reload = true;
+        }   
+    }
+    break;    
     case ScreenId::PANT_TYPE:
     {
-
+        if ((1 == userInput) || (2 == userInput))
+        {
+            m_uiManager.changeScreen(ScreenId::QUALITY);
+        }
+        else if (3 == userInput)
+        {
+            m_uiManager.changeScreen(ScreenId::HOME);
+        }
+        else
+        {
+            reload = true;
+        }  
     }
     break;
     case ScreenId::QUALITY:
     {
-
+        if ((1 == userInput) || (2 == userInput))
+        {
+            m_uiManager.changeScreen(ScreenId::UNIT_PRICE);
+        }
+        else if (3 == userInput)
+        {
+            m_uiManager.changeScreen(ScreenId::HOME);
+        }
+        else
+        {
+            reload = true;
+        } 
     }
-    break;
+    break;    
     case ScreenId::UNIT_PRICE:
     {
-
+        //FIXME: back to home screen
+        if (userInput > 0)
+        {
+            m_uiManager.changeScreen(ScreenId::QUANTITY);
+        }
+        else
+        {
+            reload = true;
+        }        
     }
-    break;
+    break;    
     case ScreenId::QUANTITY:
     {
-
+        //FIXME: cantidad > stock
+        //FIXME: back to home screen
+        if (userInput > 0)
+        {
+            m_uiManager.changeScreen(ScreenId::TOTAL_PRICE);
+        }
+        else
+        {
+            reload = true;
+        }  
     }
-    break;
+    break;    
     case ScreenId::TOTAL_PRICE:
     {
-
+        if (3 == userInput)
+        {
+            m_uiManager.changeScreen(ScreenId::HOME);
+        }
+        else
+        {
+            reload = true;
+        } 
     }
     break;
     default:
     {
-
+        reload = true;
     }
         break;
     }

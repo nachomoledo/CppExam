@@ -29,18 +29,25 @@ hist --> main : 3
 hist --> hist : otro
 cot --> camMan : 1
 cot --> pantChup : 2
-pantChup --> pantChup : otro
+cot --> main : 3
 cot --> cot : otro
 camMan --> camCue : 1 || 2
+camMan --> main : 3
 camMan --> camMan : otro
-camCue --> camCue : otro
 camCue --> cal : 1 || 2
+camCue --> main : 3
+camCue --> camCue : otro
 pantChup --> cal : 1 || 2
+pantChup --> main : 3
+pantChup --> pantChup : otro
 cal --> precio : 1 || 2
+cal --> main : 3
 cal --> cal : otro
-precio --> cant : cualquiera
+precio --> cant : precio > 0
+precio --> precio : precio < 0
 cant --> cant : cantidad > stock
 cant --> res : cantidad <= stock
+cant --> main : cantidad <= stock
 res --> main : 3
 res --> res : otro
 @enduml
