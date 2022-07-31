@@ -47,7 +47,7 @@ void ExpressSalesQuoting::update(int userInput)
         {
             m_uiManager.changeScreen(ScreenId::NEW_SALES_QUOTE);
         }
-        else if (BACK_VALUE == userInput)
+        else if (EXIT_VALUE == userInput)
         {
             m_exit = true;
         }

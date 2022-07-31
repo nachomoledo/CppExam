@@ -1,5 +1,6 @@
 #include "homeScreen.h"
 #include "utils.h"
+#include "defines.h"
 #include <iostream>
 
 HomeScreen::~HomeScreen()
@@ -43,6 +44,6 @@ std::string HomeScreen::content()
     str.append("\n");
     str.append("2) Realizar Cotización");
     str.append("\n");
-    str.append("3) Salir");
+    str.append(std::to_string(EXIT_VALUE) + ") Salir");
     return str;
 }

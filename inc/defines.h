@@ -8,5 +8,6 @@
 #define SELLER_SURNAME "SELLER SURNAME"
 #define SELLER_ID "0001"
 #define BACK_VALUE (-1)
+#define EXIT_VALUE (3)
 
 #endif
