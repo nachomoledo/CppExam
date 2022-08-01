@@ -14,12 +14,11 @@ HistoryScreen::HistoryScreen(std::string title)
 
 std::string HistoryScreen::content()
 {
-{
+    // FIXME sales quote list
     std::string str;
     str.append(m_title);
     str.append(Utils::verticalSeparator());
     str.append(Utils::backMessage());
     str.append(Utils::verticalSeparator());
     return str;
-}
 }

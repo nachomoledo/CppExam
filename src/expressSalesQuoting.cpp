@@ -1,5 +1,7 @@
 #include "expressSalesQuoting.h"
 #include "defines.h"
+#include "shirt.h"
+#include "pant.h"
 
 ExpressSalesQuoting::ExpressSalesQuoting(UserInputManager &userInputManager)
     : m_userInputManager(userInputManager), m_isRunning(false), m_exit(false)
@@ -14,15 +16,33 @@ void ExpressSalesQuoting::run()
         this->m_userInputManager.attach(this);
         m_uiManager.changeScreen(ScreenId::HOME);
         m_isRunning = true;
-        m_userInputManager.getUserInput();
 
         while (false == m_exit)
         {
+
+            if (false == m_exit)
+            {
+                m_userInputManager.getUserInput();
+            }
+            else
+            {
+                break;
+            }
+
+            if (true == m_reload)
+            {
+                m_uiManager.changeScreen(m_uiManager.getCurrentScreen());
+            }
+
+
             /* FIXME: eliminar variable de seguridad */
             static int i = 0;
             std::cout << "while " << i << std::endl;
             i++;
+            
             if (i > 100) break;
+
+
         }
     }
 
@@ -31,9 +51,13 @@ void ExpressSalesQuoting::run()
 
 void ExpressSalesQuoting::update(int userInput)
 {
-    std::cout << __FUNCTION__ << "(userInput = " << userInput << ")" << std::endl;
-
-    bool reload = false;
+//    std::cout << __FUNCTION__ << "(userInput = " << userInput << ")" << std::endl;
+    static std::unique_ptr<Garment> m_currentGarment;
+    static std::unique_ptr<SalesQuotation> m_currentSalesQuotation;
+    static int unitPrice = 0;
+    static int quantity = 0;
+    
+    m_reload = false;
 
     switch (m_uiManager.getCurrentScreen())
     {
@@ -53,7 +77,7 @@ void ExpressSalesQuoting::update(int userInput)
         }
         else
         {
-            reload = true;
+            m_reload = true;
         }
     }
     break;
@@ -65,7 +89,7 @@ void ExpressSalesQuoting::update(int userInput)
         }
         else
         {
-            reload = true;
+            m_reload = true;
         }        
     }
     break;
@@ -73,6 +97,7 @@ void ExpressSalesQuoting::update(int userInput)
     {
         if (1 == userInput)
         {
+            m_currentGarment = std::unique_ptr<Garment>(new Shirt());
             m_uiManager.changeScreen(ScreenId::SHIRT_SLEEVE);
         }
         else if (2 == userInput)
@@ -85,7 +110,7 @@ void ExpressSalesQuoting::update(int userInput)
         }
         else
         {
-            reload = true;
+            m_reload = true;
         }    
     }
     break;
@@ -93,7 +118,17 @@ void ExpressSalesQuoting::update(int userInput)
     {
         if ((1 == userInput) || (2 == userInput))
         {
-            m_uiManager.changeScreen(ScreenId::SHIRT_COLLAR);
+            Shirt *shirt = dynamic_cast<Shirt*>(m_currentGarment.get());
+            if (shirt)
+            {
+                shirt->setSleeveId((1 == userInput) ? ShirtSleeveId::Short : ShirtSleeveId::Long);
+                m_uiManager.changeScreen(ScreenId::SHIRT_COLLAR);
+            }
+            else
+            {
+                std::cout << "Dynamic cast error" << std::endl;
+                m_exit = true;
+            }
         }
         else if (BACK_VALUE == userInput)
         {
@@ -101,7 +136,7 @@ void ExpressSalesQuoting::update(int userInput)
         }
         else
         {
-            reload = true;
+            m_reload = true;
         }   
     }
     break;
@@ -109,7 +144,17 @@ void ExpressSalesQuoting::update(int userInput)
     {
         if ((1 == userInput) || (2 == userInput))
         {
-            m_uiManager.changeScreen(ScreenId::QUALITY);
+            Shirt *shirt = dynamic_cast<Shirt*>(m_currentGarment.get());
+            if (shirt)
+            {
+                shirt->setCollarId((1 == userInput) ? ShirtCollarId::Mao : ShirtCollarId::Classic);
+                m_uiManager.changeScreen(ScreenId::QUALITY);
+            }
+            else
+            {
+                std::cout << "Dynamic cast error" << std::endl;
+                m_exit = true;
+            }
         }
         else if (BACK_VALUE == userInput)
         {
@@ -117,7 +162,7 @@ void ExpressSalesQuoting::update(int userInput)
         }
         else
         {
-            reload = true;
+            m_reload = true;
         }   
     }
     break;    
@@ -125,7 +170,17 @@ void ExpressSalesQuoting::update(int userInput)
     {
         if ((1 == userInput) || (2 == userInput))
         {
+            Pant *pant = dynamic_cast<Pant*>(m_currentGarment.get());
+            if (pant)
+            {
+            pant->setPantTypeId((1 == userInput) ? PantTypeId::SlimFit : PantTypeId::Classic);
             m_uiManager.changeScreen(ScreenId::QUALITY);
+            }
+            else
+            {
+                std::cout << "Dynamic cast error" << std::endl;
+                m_exit = true;
+            }
         }
         else if (BACK_VALUE == userInput)
         {
@@ -133,7 +188,7 @@ void ExpressSalesQuoting::update(int userInput)
         }
         else
         {
-            reload = true;
+            m_reload = true;
         }  
     }
     break;
@@ -141,6 +196,7 @@ void ExpressSalesQuoting::update(int userInput)
     {
         if ((1 == userInput) || (2 == userInput))
         {
+            m_currentGarment->setQualityId((1 == userInput) ? QualityId::Standard : QualityId::Premium);
             m_uiManager.changeScreen(ScreenId::UNIT_PRICE);
         }
         else if (BACK_VALUE == userInput)
@@ -149,15 +205,16 @@ void ExpressSalesQuoting::update(int userInput)
         }
         else
         {
-            reload = true;
+            m_reload = true;
         } 
     }
     break;    
     case ScreenId::UNIT_PRICE:
     {
-        //FIXME: back to home screen
+        //FIXME: back to home screen and positive/float values
         if (userInput > 0)
         {
+            unitPrice = userInput;
             m_uiManager.changeScreen(ScreenId::QUANTITY);
         }
         else if (BACK_VALUE == userInput)
@@ -166,16 +223,20 @@ void ExpressSalesQuoting::update(int userInput)
         }
         else
         {
-            reload = true;
+            m_reload = true;
         }        
     }
     break;    
     case ScreenId::QUANTITY:
     {
         //FIXME: cantidad > stock
-        //FIXME: back to home screen
+        //FIXME: back to home screen and positive values
         if (userInput > 0)
         {
+            quantity = userInput;
+            SalesQuotation sq = SalesQuotation("date", "time", 1, "detalles prenda", unitPrice, quantity, unitPrice*quantity);
+            m_salesQuotationList.push_back(sq);
+            m_uiManager.setLastSalesQuotation(sq.toString());
             m_uiManager.changeScreen(ScreenId::TOTAL_PRICE);
         }
         else if (BACK_VALUE == userInput)
@@ -184,7 +245,7 @@ void ExpressSalesQuoting::update(int userInput)
         }        
         else
         {
-            reload = true;
+            m_reload = true;
         }  
     }
     break;    
@@ -196,24 +257,14 @@ void ExpressSalesQuoting::update(int userInput)
         }
         else
         {
-            reload = true;
+            m_reload = true;
         } 
     }
     break;
     default:
     {
-        reload = true;
+        m_reload = true;
     }
         break;
-    }
-
-    if (true == reload)
-    {
-        m_uiManager.changeScreen(m_uiManager.getCurrentScreen());
-    }
-
-    if (false == m_exit)
-    {
-        m_userInputManager.getUserInput();
     }
 }

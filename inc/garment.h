@@ -1,12 +1,7 @@
 #ifndef GARMENT_H
 #define GARMENT_H
 
-enum class GarmentTypeId
-{
-    Unspecified,
-    Shirt,
-    Pants
-};
+#include <string>
 
 enum class QualityId
 {
@@ -15,12 +10,15 @@ enum class QualityId
     Premium
 };
 
-
 class Garment
 {
+    public:
+        QualityId getQuaility(void);
+        void setQualityId(QualityId qualityId);
+        virtual std::string toString(void) = 0;
+
     private:
-        GarmentTypeId m_type;
-        QualityId m_quality;
+        QualityId m_qualityId;
         int m_unitPrice;
         int m_stockQuantity;
 };

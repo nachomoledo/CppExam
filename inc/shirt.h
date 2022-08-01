@@ -22,10 +22,12 @@ enum class ShirtSleeveId
 class Shirt : public Garment
 {
     public:
-        Shirt(ShirtCollarId collarId, ShirtSleeveId sleeveId);
+        Shirt(ShirtCollarId collarId = ShirtCollarId::Unspecified, ShirtSleeveId sleeveId = ShirtSleeveId::Unspecified);
         virtual ~Shirt();
-        std::string toString(void);
+        std::string toString(void) override;
         static int stockItems(ShirtCollarId collarId, ShirtCollarId sleeveId);
+        void setCollarId(ShirtCollarId collarId);
+        void setSleeveId(ShirtSleeveId sleeveId);
 
     private:
         ShirtCollarId m_collarId;

@@ -3,6 +3,7 @@
 
 #include "uiManager.h"
 #include "userInputManager.h"
+#include "SalesQuotation.h"
 
 class ExpressSalesQuoting : public IUserInputObserver
 {
@@ -12,10 +13,12 @@ class ExpressSalesQuoting : public IUserInputObserver
         void run(void);
 
     private:
+        std::list<SalesQuotation> m_salesQuotationList;
         UIManager m_uiManager;
         UserInputManager &m_userInputManager;
         bool m_isRunning;
         bool m_exit;
+        bool m_reload;
 };
 
 #endif

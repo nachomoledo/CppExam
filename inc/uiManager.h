@@ -3,6 +3,7 @@
 
 #include "baseScreen.h"
 #include <map>
+#include <memory>
 
 enum class ScreenId
 {
@@ -28,7 +29,7 @@ class UIManager
         ScreenId getCurrentScreen(void);
 
     private:
-        std::map<ScreenId, BaseScreen *> m_screenMap;
+        std::map<ScreenId, std::unique_ptr<BaseScreen>> m_screenMap;
         std::string m_lastSalesQuotation;
         ScreenId m_currentScreen;
         void clearScreen(void);

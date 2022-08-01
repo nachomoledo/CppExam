@@ -14,13 +14,14 @@ enum class PantTypeId
 class Pant : public Garment
 {
     public:
-        Pant(PantTypeId pantType);
+        Pant(PantTypeId pantType = PantTypeId::Unspecified);
         virtual ~Pant();
-        std::string toString(void);
+        std::string toString(void) override;
         static int stockItems(PantTypeId sleeveId);
+        void setPantTypeId(PantTypeId typeId);
 
     private:
-        PantTypeId m_pantType;
+        PantTypeId m_typeId;
 };
 
 #endif
