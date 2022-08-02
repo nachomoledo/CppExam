@@ -19,6 +19,7 @@ class ExpressSalesQuoting : public IUserInputObserver
         bool m_isRunning;
         bool m_exit;
         bool m_reload;
+        std::shared_ptr<std::string> m_lastSalesQuotation;
 };
 
 #endif

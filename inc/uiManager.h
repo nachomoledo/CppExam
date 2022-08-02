@@ -2,8 +2,10 @@
 #define UI_MANAGER_H
 
 #include "baseScreen.h"
+#include "salesQuotation.h"
 #include <map>
 #include <memory>
+#include <list>
 
 enum class ScreenId
 {
@@ -22,15 +24,15 @@ enum class ScreenId
 class UIManager
 {
     public:
-        UIManager();
+        UIManager(){};
+//        UIManager(std::shared_ptr<std::list<SalesQuotation>> &listPtr);
+        UIManager(std::shared_ptr<std::string> &salesQuotation, std::list<SalesQuotation> &listReference);
         virtual ~UIManager(void);
         void changeScreen(ScreenId newScreen);
-        void setLastSalesQuotation(std::string lastSalesQuotation);
         ScreenId getCurrentScreen(void);
 
     private:
-        std::map<ScreenId, std::unique_ptr<BaseScreen>> m_screenMap;
-        std::string m_lastSalesQuotation;
+        std::map<ScreenId, std::shared_ptr<BaseScreen>> m_screenMap;
         ScreenId m_currentScreen;
         void clearScreen(void);
 };

@@ -6,7 +6,7 @@ TotalPriceScreen::~TotalPriceScreen()
 
 }
 
-TotalPriceScreen::TotalPriceScreen(std::string title, std::string &salesQuotation)
+TotalPriceScreen::TotalPriceScreen(std::string title, std::shared_ptr<std::string> &salesQuotation)
     : BaseScreen(title), m_salesQuotation(salesQuotation)
 {
 
@@ -19,9 +19,10 @@ std::string TotalPriceScreen::content()
     str.append(Utils::verticalSeparator());
     str.append(Utils::backMessage());
     str.append(Utils::verticalSeparator());
-    str.append(m_salesQuotation);
+    str.append(*m_salesQuotation);
     str.append(Utils::verticalSeparator());
     str.append(Utils::backMessage());
-    str.append(Utils::verticalSeparator());    
+    str.append(Utils::verticalSeparator());
+
     return str;
 }

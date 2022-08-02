@@ -12,7 +12,7 @@ file(GLOB SOURCES src/*.cpp)
 
 add_executable(CppExam ${SOURCES})
 
-target_compile_features(CppExam PUBLIC cxx_std_20)
+#target_compile_features(CppExam PUBLIC cxx_std_20)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

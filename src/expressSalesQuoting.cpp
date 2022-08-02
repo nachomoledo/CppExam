@@ -6,7 +6,8 @@
 ExpressSalesQuoting::ExpressSalesQuoting(UserInputManager &userInputManager)
     : m_userInputManager(userInputManager), m_isRunning(false), m_exit(false)
 {
-    
+    m_lastSalesQuotation = std::make_shared<std::string>("");
+    m_uiManager = UIManager(m_lastSalesQuotation, m_salesQuotationList);
 }
 
 void ExpressSalesQuoting::run()
@@ -52,8 +53,8 @@ void ExpressSalesQuoting::run()
 void ExpressSalesQuoting::update(int userInput)
 {
 //    std::cout << __FUNCTION__ << "(userInput = " << userInput << ")" << std::endl;
-    static std::unique_ptr<Garment> m_currentGarment;
-    static std::unique_ptr<SalesQuotation> m_currentSalesQuotation;
+    static std::shared_ptr<Garment> m_currentGarment;
+    static std::shared_ptr<SalesQuotation> m_currentSalesQuotation;
     static int unitPrice = 0;
     static int quantity = 0;
     
@@ -97,11 +98,12 @@ void ExpressSalesQuoting::update(int userInput)
     {
         if (1 == userInput)
         {
-            m_currentGarment = std::unique_ptr<Garment>(new Shirt());
+            m_currentGarment = std::shared_ptr<Garment>(new Shirt());
             m_uiManager.changeScreen(ScreenId::SHIRT_SLEEVE);
         }
         else if (2 == userInput)
         {
+            m_currentGarment = std::shared_ptr<Garment>(new Pant());
             m_uiManager.changeScreen(ScreenId::PANT_TYPE);
         }
         else if (BACK_VALUE == userInput)
@@ -126,7 +128,7 @@ void ExpressSalesQuoting::update(int userInput)
             }
             else
             {
-                std::cout << "Dynamic cast error" << std::endl;
+                std::cout << "Dynamic cast error (shirt sleeve)" << std::endl;
                 m_exit = true;
             }
         }
@@ -152,7 +154,7 @@ void ExpressSalesQuoting::update(int userInput)
             }
             else
             {
-                std::cout << "Dynamic cast error" << std::endl;
+                std::cout << "Dynamic cast error (shirt collar)" << std::endl;
                 m_exit = true;
             }
         }
@@ -178,7 +180,7 @@ void ExpressSalesQuoting::update(int userInput)
             }
             else
             {
-                std::cout << "Dynamic cast error" << std::endl;
+                std::cout << "Dynamic cast error (pant)" << std::endl;
                 m_exit = true;
             }
         }
@@ -236,7 +238,8 @@ void ExpressSalesQuoting::update(int userInput)
             quantity = userInput;
             SalesQuotation sq = SalesQuotation("date", "time", 1, "detalles prenda", unitPrice, quantity, unitPrice*quantity);
             m_salesQuotationList.push_back(sq);
-            m_uiManager.setLastSalesQuotation(sq.toString());
+           //m_uiManager.setLastSalesQuotation(sq.toString());
+           *m_lastSalesQuotation = sq.toString();
             m_uiManager.changeScreen(ScreenId::TOTAL_PRICE);
         }
         else if (BACK_VALUE == userInput)
