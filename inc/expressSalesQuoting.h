@@ -20,6 +20,8 @@ class ExpressSalesQuoting : public IUserInputObserver
         bool m_exit;
         bool m_reload;
         std::shared_ptr<std::string> m_lastSalesQuotation;
+        std::string getTimeString(time_t t);
+        std::string getDateString(time_t t);
 };
 
 #endif

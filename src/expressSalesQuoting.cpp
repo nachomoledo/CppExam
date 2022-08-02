@@ -50,6 +50,19 @@ void ExpressSalesQuoting::run()
 
 }
 
+std::string ExpressSalesQuoting::getDateString(time_t t)
+{
+    tm *ltm = localtime(&t);
+    return    std::string(std::to_string( 1900 + ltm->tm_year) + "/" + std::to_string(1 + ltm->tm_mon) + "/" + std::to_string(ltm->tm_mday));
+}
+
+std::string ExpressSalesQuoting::getTimeString(time_t t)
+{
+    tm *ltm = localtime(&t);
+    return    std::string(std::to_string(ltm->tm_hour) + ":" + std::to_string(ltm->tm_min) + ":" + std::to_string(ltm->tm_sec));
+}
+
+
 void ExpressSalesQuoting::update(int userInput)
 {
 //    std::cout << __FUNCTION__ << "(userInput = " << userInput << ")" << std::endl;
@@ -236,7 +249,8 @@ void ExpressSalesQuoting::update(int userInput)
         if (userInput > 0)
         {
             quantity = userInput;
-            SalesQuotation sq = SalesQuotation("date", "time", 1, "detalles prenda", unitPrice, quantity, unitPrice*quantity);
+            time_t now = time(0);
+            SalesQuotation sq = SalesQuotation(getDateString(now), getTimeString(now), 1, "detalles prenda", unitPrice, quantity, unitPrice*quantity);
             m_salesQuotationList.push_back(sq);
            //m_uiManager.setLastSalesQuotation(sq.toString());
            *m_lastSalesQuotation = sq.toString();
