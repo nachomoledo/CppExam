@@ -37,11 +37,11 @@ void ExpressSalesQuoting::run()
 
 
             /* FIXME: eliminar variable de seguridad */
-            static int i = 0;
+            /*static int i = 0;
             std::cout << "while " << i << std::endl;
             i++;
             
-            if (i > 100) break;
+            if (i > 100) break;*/
 
 
         }

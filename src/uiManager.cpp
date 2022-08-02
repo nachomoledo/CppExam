@@ -56,7 +56,7 @@ void UIManager::changeScreen(ScreenId newScreen)
 {
     if (m_screenMap.count(newScreen) > 0)
     {
-        //clearScreen();
+        clearScreen();
         m_screenMap.at(newScreen)->print();
         m_currentScreen = newScreen;
     }

@@ -23,20 +23,20 @@ SalesQuotation::SalesQuotation(std::string date,
 std::string SalesQuotation::toString()
 {
     std::string str;
-    str.append("Número de identificación: " + m_id);
+    str.append("Numero de identificacion: " + m_id);
     str.append("\n");
-    str.append("Fecha y Hora de la cotización: " + m_date + " " + m_time);
+    str.append("Fecha y Hora de la cotizacion: " + m_date + " " + m_time);
     str.append("\n");
-    str.append("Código del vendedor: " + m_sellerId);
+    str.append("Codigo del vendedor: " + m_sellerId);
     str.append("\n");
     str.append("Prenda cotizada: " + m_garment);
     str.append("\n");
-    /* FIXME: formatear número */
+    /* FIXME: formatear numero */
     str.append("Precio unitario: $" + m_unitPrice);
     str.append("\n");
     str.append("Cantidad de unidades cotizadas: " + m_quantity);
     str.append("\n");
-    /* FIXME: formatear número */
+    /* FIXME: formatear numero */
     str.append("Precio final: " + m_totalPrice);
     str.append(Utils::verticalSeparator());
 

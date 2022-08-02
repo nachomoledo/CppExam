@@ -21,9 +21,9 @@ std::string PantTypeScreen::content()
     str.append(Utils::backMessage());
     str.append(Utils::verticalSeparator());
     str.append("\n");
-    str.append("PASO 2: El Pantalón a cotizar, ¿Es Chupín?");
+    str.append("PASO 2: El Pantalon a cotizar, es Chupin?");
     str.append("\n");
-    str.append("1) Sí");
+    str.append("1) Si");
     str.append("\n");
     str.append("2) No");
     str.append(Utils::verticalSeparator());

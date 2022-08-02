@@ -19,5 +19,5 @@ std::string Utils::horizontalSeparator()
 
 std::string Utils::backMessage()
 {
-    return std::string("Presiona " + std::to_string(BACK_VALUE) + " para volver al menú principal");    
+    return std::string("Presiona " + std::to_string(BACK_VALUE) + " para volver al menu principal");    
 }

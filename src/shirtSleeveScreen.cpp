@@ -21,9 +21,9 @@ std::string ShirtSleeveScreen::content()
     str.append(Utils::backMessage());
     str.append(Utils::verticalSeparator());
     str.append("\n");
-    str.append("PASO 2.a: La camisa a cotizar, ¿Es Manga Corta?:");
+    str.append("PASO 2.a: La camisa a cotizar, es Manga Corta?:");
     str.append("\n");
-    str.append("1) Sí");
+    str.append("1) Si");
     str.append("\n");
     str.append("2) No");
     str.append(Utils::verticalSeparator());

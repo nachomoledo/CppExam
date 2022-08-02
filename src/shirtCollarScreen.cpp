@@ -21,9 +21,9 @@ std::string ShirtCollarScreen::content()
     str.append(Utils::backMessage());
     str.append(Utils::verticalSeparator());
     str.append("\n");
-    str.append("PASO 2.b: La camisa a cotizar, ¿Es Cuello Mao?:");
+    str.append("PASO 2.b: La camisa a cotizar, es Cuello Mao?:");
     str.append("\n");
-    str.append("1) Sí");
+    str.append("1) Si");
     str.append("\n");
     str.append("2) No");
     str.append(Utils::verticalSeparator());

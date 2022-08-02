@@ -25,7 +25,7 @@ std::string SalesQuotationScreen::content()
     str.append("\n");
     str.append("1) Camisa");
     str.append("\n");
-    str.append("2) Pantalón");
+    str.append("2) Pantalon");
     str.append(Utils::verticalSeparator());
     return str;
 }

@@ -20,7 +20,7 @@ std::string QuantityScreen::content()
     str.append(Utils::backMessage());
     str.append(Utils::verticalSeparator());
     str.append("\n");
-    str.append("INFORMACIÓN");
+    str.append("INFORMACION: ");
     str.append("EXISTE x CANTIDAD DE UNIDADES EN STOCK DE LA PRENDA SELECCIONADA");
     str.append("\n");
     str.append("PASO 5: Ingrese la cantidad de unidades a cotizar:");

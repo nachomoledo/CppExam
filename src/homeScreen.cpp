@@ -37,12 +37,12 @@ std::string HomeScreen::content()
     str.append(m_sellerId);
     str.append(Utils::verticalSeparator());
     str.append("\n");
-    str.append("SELECCIONE UNA OPIÓN DEL MENÚ:");
+    str.append("SELECCIONE UNA OPCION DEL MENU:");
     str.append("\n");
     str.append("\n");
     str.append("1) Historial de Cotizaciones");
     str.append("\n");
-    str.append("2) Realizar Cotización");
+    str.append("2) Realizar Cotizacion");
     str.append("\n");
     str.append(std::to_string(EXIT_VALUE) + ") Salir");
     return str;
