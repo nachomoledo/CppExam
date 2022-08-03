@@ -78,6 +78,7 @@ class "Express Sales Quoting (Aplicación)" as app
 + void update(int userInput) override
 + void run(void)
 }
+note top: El "historial" es la primera propiedad de esta clase
 
 interface "User Input Observer" as obs
 {
@@ -157,6 +158,11 @@ class "User Input Manager" as  uim
 + void getUserInput(void)
 }
 
+interface "Imprimible (Parte F)" as impr
+{
+    void toString() = 0
+}
+
 subject <|-- uim
 app o-- uim
 app o-- vend
@@ -164,6 +170,8 @@ vend --o tienda
 app o-- tienda
 app *-- cot
 app -- prenda
+impr <|-- app
+impr <|-- cot
 obs <|-- app
 prenda <|-- cam
 prenda <|-- pant
