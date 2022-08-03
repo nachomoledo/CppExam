@@ -10,6 +10,8 @@ class Utils
         static std::string horizontalSeparator(void);
         static std::string backMessage(void);
         static std::string floatToString(float f, uint8_t precision);
+        static std::string getTimeString(time_t t);
+        static std::string getDateString(time_t t);
 };
 
 

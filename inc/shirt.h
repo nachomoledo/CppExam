@@ -28,7 +28,6 @@ class Shirt : public Garment
         std::string toString(void) override;
         float getNetPrice(int unitPrice) override;
         int getStock(void) override;
-        static int stockItems(ShirtCollarId collarId, ShirtSleeveId sleeveId, GarmentQualityId qualityId);
         void setCollarId(ShirtCollarId collarId);
         void setSleeveId(ShirtSleeveId sleeveId);
     private:

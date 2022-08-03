@@ -68,37 +68,6 @@ int Pant::getStock()
     return retValue;
 }
 
-int Pant::stockItems(PantTypeId typeId, GarmentQualityId qualityId)
-{
-    int retValue = 2000;
-    if (typeId == PantTypeId::SlimFit)
-    {
-        int retValue = 1500;
-        if (qualityId == GarmentQualityId::Standard)
-        {
-            retValue = 750;
-        }
-        else if (qualityId == GarmentQualityId::Premium)
-        {
-            retValue = 750;
-        }        
-    }
-    else if (typeId == PantTypeId::Standard)
-    {
-        retValue = 500;
-        if (qualityId == GarmentQualityId::Standard)
-        {
-            retValue = 250;
-        }
-        else if (qualityId == GarmentQualityId::Premium)
-        {
-            retValue = 250;
-        }        
-    }
-
-    return retValue;
-}
-
 void Pant::setPantTypeId(PantTypeId typeId)
 {
     m_typeId = typeId;

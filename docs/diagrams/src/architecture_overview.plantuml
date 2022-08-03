@@ -4,83 +4,170 @@ hide circle
 show enum circle
 hide empty members
 
-class "Vendedor" as vend
+class "Seller (Vendedor)" as vend
 {
-- nombre
-- apellido
-- codigo
+- string m_name
+- string m_surname
+- int m_code
+- static int m_nextCode 
+--
++ Seller(string name, string surname)
++ string getName()
++ string getSurname()
++ int getCode()
 }
 
-class "Cotización" as cot
+class "SalesQuotation (Cotización)" as cot
 {
-- id
-- hora
-- fecha
-- codigoVendedor
-- prendaId
-- cantidad
+- static int m_nextId
+- int m_id
+- string m_date
+- string m_time
+- int m_sellerId
+- string m_garmentDescription
+- int m_unitPrice
+- int m_quantity
+- float m_totalPrice
+--
++ SalesQuotation(string date, 
+string time, int sellerId,
+string garment, int unitPrice,
+int quantity, float totalPrice)
++ string toString(void)
 }
 
-class "Historial" as hist
+class "Store (Tienda)" as tienda
 {
-- idVendedor
-- cotizaciones[]
+- string m_name;
+- string m_address;
+- list<Garment*> m_garmentList;
+--
++ Store(std::string name, std::string address)
++ string getName()
++ string getAddress()
 }
 
-class "Tienda" as tienda
+interface "Garment (Prenda)" as prenda
 {
-- nombre
-- direccion
-- prendas[]
+- int m_unitPrice
+- int m_stockQuantity
+# GarmentQualityId m_qualityId
+--
++ GarmentQualityId getQuaility(void);
++ void setQualityId(GarmentQualityId qualityId);
++ virtual string toString(void) = 0;
++ virtual float getNetPrice(int unitPrice) = 0;
++ virtual int getStock(void) = 0;
 }
 
-class "Prenda" as prendaId
+class "Express Sales Quoting (Aplicación)" as app
 {
-    - calidad
-    - precio
-    - stock
+- list<SalesQuotation> m_salesQuotationList
+- unique_ptr<UIManager> m_uiManager
+- UserInputManager &m_userInputManager
+- Seller &m_seller
+- Store &m_store
+- bool m_isRunning
+- bool m_exit
+- bool m_reload
+- bool m_printError
+- int m_stock
+- shared_ptr<string> m_lastSalesQuotation
+--
++ ExpressSalesQuoting(UserInputManager &userInputManager, Seller &seller, Store &store)
++ void update(int userInput) override
++ void run(void)
 }
 
-enum "Calidad" as cal
+interface "User Input Observer" as obs
 {
++ virtual ~IUserInputObserver()
++ virtual void update(int input) = 0
+}
+
+enum "Garment Quality Id(Calidad)" as cal
+{
+    Unspecified
     Standard
     Premium
 }
 
-class "Pantalon" as pant
+enum "Pant Type Id (Tipo Pantalón)" as pantId
 {
-
+    Unspecified
+    Standard
+    SlimFit
 }
 
-class "Pantalon común" as comun
+class "Pant (Pantalon)" as pant
 {
-
+- PantTypeId m_typeId
+--
++ Pant()
++ Pant(GarmentQualityId qualityId, PantTypeId pantType)
++ virtual ~Pant()
++ void setPantTypeId(PantTypeId typeId)
 }
 
-class "Pantalon chupin" as chupin
+class "Shirt (Camisa)" as cam
 {
-
+- ShirtCollarId m_collarId
+- ShirtSleeveId m_sleeveId
+--
++ Shirt()
++ Shirt(GarmentQualityId qualityId, ShirtCollarId collarId, ShirtSleeveId sleeveId)
++ virtual ~Shirt()
++ void setCollarId(ShirtCollarId collarId)
++ void setSleeveId(ShirtSleeveId sleeveId)
 }
 
-class "Camisa" as cam
+enum "Shirt Collar Id (Tipo Cuello)" as cuello
 {
-
-}
-
-class "Camisa manga corta" as corta
-{
-
-}
-
-class "Camisa manga larga" as larga
-{
-
-}
-
-enum "Cuello" as cuello
-{
-    Comun
+    Unspecified
+    Standard
     Mao
 }
 
+enum "Shirt Sleeve Id (Tipo Manga)" as manga
+{
+    Unspecified
+    Short
+    Long
+}
+
+interface "Subject" as subject
+{
+- virtual void notify(void) = 0
+--
+- virtual ~ISubject()
+- virtual void attach(IUserInputObserver *observer) = 0
+- virtual void detach(IUserInputObserver *observer) = 0
+}
+
+class "User Input Manager" as  uim
+{
+- std::list<IUserInputObserver *> m_observerList
+- int m_lastInput
+- bool m_awaitingInput
+--
++ UserInputManager()
++ virtual ~UserInputManager()
++ void attach(IUserInputObserver *observer) override
++ void detach(IUserInputObserver *observer) override
++ void getUserInput(void)
+}
+
+subject <|-- uim
+app o-- uim
+app o-- vend
+app o-- tienda
+app *-- cot
+app -- prenda
+obs <|-- app
+prenda <|-- cam
+prenda <|-- pant
+prenda -- cal
+cam -- cuello
+cam -- manga
+pant -- pantId
 @enduml
