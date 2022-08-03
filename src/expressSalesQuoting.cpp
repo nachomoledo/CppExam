@@ -3,11 +3,12 @@
 #include "shirt.h"
 #include "pant.h"
 
-ExpressSalesQuoting::ExpressSalesQuoting(UserInputManager &userInputManager)
-    : m_userInputManager(userInputManager), m_isRunning(false), m_exit(false)
+ExpressSalesQuoting::ExpressSalesQuoting(UserInputManager &userInputManager, Seller &seller, Store &store)
+    : m_userInputManager(userInputManager), m_seller(seller), m_store(store), m_isRunning(false), m_exit(false)
 {
     m_lastSalesQuotation = std::make_shared<std::string>("");
-    m_uiManager = UIManager(m_lastSalesQuotation, m_salesQuotationList);
+    m_uiManager = std::unique_ptr<UIManager>(new UIManager(seller, store, m_lastSalesQuotation, m_salesQuotationList));
+//    m_uiManager = UIManager(m_lastSalesQuotation, m_salesQuotationList);
 }
 
 void ExpressSalesQuoting::run()
@@ -15,7 +16,7 @@ void ExpressSalesQuoting::run()
     if (false == m_isRunning)
     {
         this->m_userInputManager.attach(this);
-        m_uiManager.changeScreen(ScreenId::HOME);
+        (*m_uiManager).changeScreen(ScreenId::HOME);
         m_isRunning = true;
 
         while (false == m_exit)
@@ -32,7 +33,7 @@ void ExpressSalesQuoting::run()
 
             if (true == m_reload)
             {
-                m_uiManager.changeScreen(m_uiManager.getCurrentScreen());
+                (*m_uiManager).changeScreen((*m_uiManager).getCurrentScreen());
             }
 
 
@@ -77,17 +78,17 @@ void ExpressSalesQuoting::update(int userInput)
 
     m_reload = false;
 
-    switch (m_uiManager.getCurrentScreen())
+    switch ((*m_uiManager).getCurrentScreen())
     {
     case ScreenId::HOME:
     {
         if (1 == userInput)
         {
-            m_uiManager.changeScreen(ScreenId::SALES_QUOTE_HISTORY);
+            (*m_uiManager).changeScreen(ScreenId::SALES_QUOTE_HISTORY);
         }
         else if (2 == userInput)
         {
-            m_uiManager.changeScreen(ScreenId::NEW_SALES_QUOTE);
+            (*m_uiManager).changeScreen(ScreenId::NEW_SALES_QUOTE);
         }
         else if (EXIT_VALUE == userInput)
         {
@@ -103,7 +104,7 @@ void ExpressSalesQuoting::update(int userInput)
     {
         if (BACK_VALUE == userInput)
         {
-            m_uiManager.changeScreen(ScreenId::HOME);
+            (*m_uiManager).changeScreen(ScreenId::HOME);
         }
         else
         {
@@ -116,16 +117,16 @@ void ExpressSalesQuoting::update(int userInput)
         if (1 == userInput)
         {
             m_currentGarment = std::shared_ptr<Garment>(new Shirt());
-            m_uiManager.changeScreen(ScreenId::SHIRT_SLEEVE);
+            (*m_uiManager).changeScreen(ScreenId::SHIRT_SLEEVE);
         }
         else if (2 == userInput)
         {
             m_currentGarment = std::shared_ptr<Garment>(new Pant());
-            m_uiManager.changeScreen(ScreenId::PANT_TYPE);
+            (*m_uiManager).changeScreen(ScreenId::PANT_TYPE);
         }
         else if (BACK_VALUE == userInput)
         {
-            m_uiManager.changeScreen(ScreenId::HOME);
+            (*m_uiManager).changeScreen(ScreenId::HOME);
         }
         else
         {
@@ -141,7 +142,7 @@ void ExpressSalesQuoting::update(int userInput)
             if (shirt)
             {
                 shirt->setSleeveId((1 == userInput) ? ShirtSleeveId::Short : ShirtSleeveId::Long);
-                m_uiManager.changeScreen(ScreenId::SHIRT_COLLAR);
+                (*m_uiManager).changeScreen(ScreenId::SHIRT_COLLAR);
             }
             else
             {
@@ -151,7 +152,7 @@ void ExpressSalesQuoting::update(int userInput)
         }
         else if (BACK_VALUE == userInput)
         {
-            m_uiManager.changeScreen(ScreenId::HOME);
+            (*m_uiManager).changeScreen(ScreenId::HOME);
         }
         else
         {
@@ -167,7 +168,7 @@ void ExpressSalesQuoting::update(int userInput)
             if (shirt)
             {
                 shirt->setCollarId((1 == userInput) ? ShirtCollarId::Mao : ShirtCollarId::Standard);
-                m_uiManager.changeScreen(ScreenId::QUALITY);
+                (*m_uiManager).changeScreen(ScreenId::QUALITY);
             }
             else
             {
@@ -177,7 +178,7 @@ void ExpressSalesQuoting::update(int userInput)
         }
         else if (BACK_VALUE == userInput)
         {
-            m_uiManager.changeScreen(ScreenId::HOME);
+            (*m_uiManager).changeScreen(ScreenId::HOME);
         }
         else
         {
@@ -193,7 +194,7 @@ void ExpressSalesQuoting::update(int userInput)
             if (pant)
             {
             pant->setPantTypeId((1 == userInput) ? PantTypeId::SlimFit : PantTypeId::Standard);
-            m_uiManager.changeScreen(ScreenId::QUALITY);
+            (*m_uiManager).changeScreen(ScreenId::QUALITY);
             }
             else
             {
@@ -203,7 +204,7 @@ void ExpressSalesQuoting::update(int userInput)
         }
         else if (BACK_VALUE == userInput)
         {
-            m_uiManager.changeScreen(ScreenId::HOME);
+            (*m_uiManager).changeScreen(ScreenId::HOME);
         }
         else
         {
@@ -216,11 +217,11 @@ void ExpressSalesQuoting::update(int userInput)
         if ((1 == userInput) || (2 == userInput))
         {
             m_currentGarment->setQualityId((1 == userInput) ? GarmentQualityId::Standard : GarmentQualityId::Premium);
-            m_uiManager.changeScreen(ScreenId::UNIT_PRICE);
+            (*m_uiManager).changeScreen(ScreenId::UNIT_PRICE);
         }
         else if (BACK_VALUE == userInput)
         {
-            m_uiManager.changeScreen(ScreenId::HOME);
+            (*m_uiManager).changeScreen(ScreenId::HOME);
         }
         else
         {
@@ -234,11 +235,11 @@ void ExpressSalesQuoting::update(int userInput)
         if (userInput > 0)
         {
             unitPrice = userInput;
-            m_uiManager.changeScreen(ScreenId::QUANTITY);
+            (*m_uiManager).changeScreen(ScreenId::QUANTITY);
         }
         else if (BACK_VALUE == userInput)
         {
-            m_uiManager.changeScreen(ScreenId::HOME);
+            (*m_uiManager).changeScreen(ScreenId::HOME);
         }
         else
         {
@@ -258,11 +259,11 @@ void ExpressSalesQuoting::update(int userInput)
             SalesQuotation sq = SalesQuotation(getDateString(now), getTimeString(now), 1, m_currentGarment->toString(), unitPrice, quantity, m_currentGarment->getNetPrice(unitPrice)*quantity);
             m_salesQuotationList.push_back(sq);
            *m_lastSalesQuotation = sq.toString();
-            m_uiManager.changeScreen(ScreenId::TOTAL_PRICE);
+            (*m_uiManager).changeScreen(ScreenId::TOTAL_PRICE);
         }
         else if (BACK_VALUE == userInput)
         {
-            m_uiManager.changeScreen(ScreenId::HOME);
+            (*m_uiManager).changeScreen(ScreenId::HOME);
         }        
         else
         {
@@ -274,7 +275,7 @@ void ExpressSalesQuoting::update(int userInput)
     {
         if (BACK_VALUE == userInput)
         {
-            m_uiManager.changeScreen(ScreenId::HOME);
+            (*m_uiManager).changeScreen(ScreenId::HOME);
         }
         else
         {

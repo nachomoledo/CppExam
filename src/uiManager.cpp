@@ -22,11 +22,12 @@ void UIManager::clearScreen()
 #endif
 }
 
-UIManager::UIManager(std::shared_ptr<std::string> &salesQuotation, std::list<SalesQuotation> &listReference)
+UIManager::UIManager(Seller &seller, Store &store, std::shared_ptr<std::string> &salesQuotation, std::list<SalesQuotation> &listReference)
+    : m_seller(seller), m_store(store)
 {
     std::string cotizarStr = std::string(APP_NAME) + "- COTIZAR";
     m_screenMap.insert(std::make_pair<ScreenId, std::shared_ptr<BaseScreen>>(ScreenId::HOME,
-        std::shared_ptr<BaseScreen>(new HomeScreen(std::string(APP_NAME) + " - MENU PRINCIPAL", STORE_NAME, STORE_ADDRESS, SELLER_NAME, SELLER_SURNAME, SELLER_ID))));
+        std::shared_ptr<BaseScreen>(new HomeScreen(std::string(APP_NAME) + " - MENU PRINCIPAL", store.getName(), store.getAddress(), seller.getName(), seller.getSurname(), std::to_string(seller.getCode())))));
     m_screenMap.insert(std::make_pair<ScreenId, std::shared_ptr<BaseScreen>>(ScreenId::SALES_QUOTE_HISTORY, 
         std::shared_ptr<BaseScreen>(new HistoryScreen(std::string(APP_NAME) + "- HISTORIAL DE COTIZACIONES", listReference))));
     m_screenMap.insert(std::make_pair<ScreenId, std::shared_ptr<BaseScreen>>(ScreenId::NEW_SALES_QUOTE, 
