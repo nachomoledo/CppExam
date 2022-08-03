@@ -162,7 +162,7 @@ void ExpressSalesQuoting::update(int userInput)
             Shirt *shirt = dynamic_cast<Shirt*>(m_currentGarment.get());
             if (shirt)
             {
-                shirt->setCollarId((1 == userInput) ? ShirtCollarId::Mao : ShirtCollarId::Classic);
+                shirt->setCollarId((1 == userInput) ? ShirtCollarId::Mao : ShirtCollarId::Standard);
                 m_uiManager.changeScreen(ScreenId::QUALITY);
             }
             else

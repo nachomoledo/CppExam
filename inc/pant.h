@@ -18,7 +18,7 @@ class Pant : public Garment
         Pant(GarmentQualityId qualityId, PantTypeId pantType);
         virtual ~Pant();
         std::string toString(void) override;
-        static int stockItems(PantTypeId sleeveId);
+        static int stockItems(PantTypeId typeId, GarmentQualityId qualityId);
         void setPantTypeId(PantTypeId typeId);
 
     private:
