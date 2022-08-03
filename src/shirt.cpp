@@ -37,6 +37,10 @@ float Shirt::getNetPrice(int unitPrice)
     {
         retValue += retValue*0.03;
     }
+    if (GarmentQualityId::Premium == m_qualityId)
+    {
+        retValue += retValue*0.3;
+    }
     return retValue;
 }
 
