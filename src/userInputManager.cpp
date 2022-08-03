@@ -1,4 +1,6 @@
-#include "userInputManager.h"
+#include "userInputManager.h"  
+#include <ios>
+#include <limits>
 
 UserInputManager::UserInputManager()
     : m_lastInput(0), m_awaitingInput(false)
@@ -28,6 +30,13 @@ void UserInputManager::getUserInput()
     {
         m_awaitingInput = true;
         std::cin >> m_lastInput;
+        while (!std::cin.good())
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Por favor, ingrese solo numeros" << std::endl;
+            std::cin >> m_lastInput;
+        }
         m_awaitingInput = false;
         notify();
     }

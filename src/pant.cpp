@@ -16,9 +16,13 @@ std::string Pant::toString()
     std::string str;
     str.append("Pantalon");
     str.append(" - ");
-    str.append((PantTypeId::Standard == m_typeId) ? "Standard" 
-             : (PantTypeId::SlimFit == m_typeId) ? "Chupin"
-             : "No especificado");
+    str.append((PantTypeId::Standard == m_typeId) ? "Tipo Standard" 
+             : (PantTypeId::SlimFit == m_typeId) ? "Tipo Chupin"
+             : "Tipo no especificado");
+    str.append(" - ");
+    str.append((GarmentQualityId::Premium == m_qualityId) ? "Calidad Premium" 
+             : (GarmentQualityId::Standard == m_qualityId) ? "Calidad Standard"
+             : "Calidad no especificada");             
     return str;
 }
 

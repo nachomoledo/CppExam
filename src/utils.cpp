@@ -34,14 +34,12 @@ std::string Utils::floatToString(float f, uint8_t precision)
 
 std::string Utils::getDateString(time_t t)
 {
-    return "--";
-//    tm *ltm = localtime(&t);
-//    return    std::string(std::to_string( 1900 + ltm->tm_year) + "/" + std::to_string(1 + ltm->tm_mon) + "/" + std::to_string(ltm->tm_mday));
+    tm *ltm = localtime(&t);
+    return    std::string(std::to_string( 1900 + ltm->tm_year) + "/" + std::to_string(1 + ltm->tm_mon) + "/" + std::to_string(ltm->tm_mday));
 }
 
 std::string Utils::getTimeString(time_t t)
 {
-    return "--";
-//    tm *ltm = localtime(&t);
-//    return    std::string(std::to_string(ltm->tm_hour) + ":" + std::to_string(ltm->tm_min) + ":" + std::to_string(ltm->tm_sec));
+    tm *ltm = localtime(&t);
+    return    std::string(std::to_string(ltm->tm_hour) + ":" + std::to_string(ltm->tm_min) + ":" + std::to_string(ltm->tm_sec));
 }

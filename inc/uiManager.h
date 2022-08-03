@@ -26,8 +26,6 @@ enum class ScreenId
 class UIManager
 {
     public:
-        //UIManager(){};
-//        UIManager(std::shared_ptr<std::list<SalesQuotation>> &listPtr);
         UIManager(Seller &seller, Store &store, std::shared_ptr<std::string> &salesQuotation, std::list<SalesQuotation> &listReference);
         virtual ~UIManager(void);
         void changeScreen(ScreenId newScreen);

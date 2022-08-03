@@ -7,7 +7,6 @@ HistoryScreen::~HistoryScreen()
 }
 
 HistoryScreen::HistoryScreen(std::string title, std::list<SalesQuotation> &listReference)
-//HistoryScreen::HistoryScreen(std::string title, std::shared_ptr<std::list<SalesQuotation>> &listPtr)
     : BaseScreen(title), m_listReference(listReference)
 {
 
@@ -15,7 +14,6 @@ HistoryScreen::HistoryScreen(std::string title, std::list<SalesQuotation> &listR
 
 std::string HistoryScreen::content()
 {
-    // FIXME sales quote list
     std::string str;
     str.append(m_title);
     str.append(Utils::verticalSeparator());

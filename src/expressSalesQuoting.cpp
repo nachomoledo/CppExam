@@ -8,7 +8,7 @@ ExpressSalesQuoting::ExpressSalesQuoting(UserInputManager &userInputManager, Sel
 {
     m_lastSalesQuotation = std::make_shared<std::string>("");
     m_uiManager = std::unique_ptr<UIManager>(new UIManager(seller, store, m_lastSalesQuotation, m_salesQuotationList));
-//    m_uiManager = UIManager(m_lastSalesQuotation, m_salesQuotationList);
+    m_printError = false;
 }
 
 void ExpressSalesQuoting::run()
@@ -46,15 +46,12 @@ void ExpressSalesQuoting::run()
                 m_printError = false;
             }
 
-
-            /* FIXME: eliminar variable de seguridad */
+            /* FIXME: mejorar "watchdog" */
             /*static int i = 0;
             std::cout << "while " << i << std::endl;
             i++;
             
             if (i > 100) break;*/
-
-
         }
     }
 
@@ -227,12 +224,10 @@ void ExpressSalesQuoting::update(int userInput)
     case ScreenId::UNIT_PRICE:
     {
         m_stock = m_currentGarment->getStock();
-        //FIXME: back to home screen and positive/float values
         if (userInput > 0)
         {
             unitPrice = userInput;
             (*m_uiManager).changeScreen(ScreenId::QUANTITY);
-//            m_printStock = true;
         }
         else if (BACK_VALUE == userInput)
         {
@@ -246,13 +241,10 @@ void ExpressSalesQuoting::update(int userInput)
     break;    
     case ScreenId::QUANTITY:
     {
-        //FIXME: cantidad > stock
-        //FIXME: back to home screen and positive values
         if ((userInput > 0) && (userInput <= m_stock))
         {
             quantity = userInput;
-            time_t now;
-            //now = time(0);
+            time_t now = time(0);
             SalesQuotation sq = SalesQuotation(Utils::getDateString(now), Utils::getTimeString(now), 1, m_currentGarment->toString(), unitPrice, quantity, m_currentGarment->getNetPrice(unitPrice)*quantity);
             m_salesQuotationList.push_back(sq);
            *m_lastSalesQuotation = sq.toString();

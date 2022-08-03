@@ -32,12 +32,10 @@ std::string SalesQuotation::toString()
     str.append("\n");
     str.append("Prenda cotizada: " + m_garment);
     str.append("\n");
-    /* FIXME: formatear numero */
     str.append("Precio unitario: $" + std::to_string(m_unitPrice));
     str.append("\n");
     str.append("Cantidad de unidades cotizadas: " + std::to_string(m_quantity));
     str.append("\n");
-    /* FIXME: formatear numero */
     str.append("Precio final: $" + Utils::floatToString(m_totalPrice, 2));
     return str;
 }

@@ -18,11 +18,15 @@ std::string Shirt::toString()
     str.append(" - ");
     str.append((ShirtSleeveId::Long == m_sleeveId) ? "Manga Larga" 
              : (ShirtSleeveId::Short == m_sleeveId) ? "Manga Corta"
-             : "No especificado");
+             : "Manga no especificada");
     str.append(" - ");
-    str.append((GarmentQualityId::Premium == m_qualityId) ? "Premium" 
-            : (GarmentQualityId::Standard == m_qualityId) ? "Standard"
-            : "No especificado");
+    str.append((ShirtCollarId::Mao == m_collarId) ? "Cuello Mao" 
+             : (ShirtCollarId::Standard == m_collarId) ? "Cuello Standard"
+             : "Cuello no especificado");
+    str.append(" - ");    
+    str.append((GarmentQualityId::Premium == m_qualityId) ? "Calidad Premium" 
+            : (GarmentQualityId::Standard == m_qualityId) ? "Calidad Standard"
+            : "Calidad no especificada");
     return str;
 }
 
