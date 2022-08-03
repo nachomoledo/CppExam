@@ -14,7 +14,7 @@ class SalesQuotation
                        std::string garment,
                        int unitPrice,
                        int quantity,
-                       int totalPrice);
+                       float totalPrice);
         std::string toString(void);
 
     private:
@@ -26,7 +26,7 @@ class SalesQuotation
         std::string m_garment;
         int m_unitPrice;
         int m_quantity;
-        int m_totalPrice;
+        float m_totalPrice;
 };
 
 #endif

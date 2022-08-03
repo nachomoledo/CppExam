@@ -12,7 +12,7 @@ SalesQuotation::SalesQuotation(std::string date,
                                std::string garment,
                                int unitPrice,
                                int quantity,
-                               int totalPrice)
+                               float totalPrice)
     : m_id(m_nextId++), m_date(date), m_time(time), m_sellerId(sellerId),
       m_garment(garment), m_unitPrice(unitPrice), m_quantity(quantity), 
       m_totalPrice(totalPrice)
@@ -39,6 +39,6 @@ std::string SalesQuotation::toString()
     str.append("Cantidad de unidades cotizadas: " + std::to_string(m_quantity));
     str.append("\n");
     /* FIXME: formatear numero */
-    str.append("Precio final: $" + std::to_string(m_totalPrice));
+    str.append("Precio final: $" + Utils::floatToString(m_totalPrice, 2));
     return str;
 }

@@ -7,7 +7,10 @@ class Seller
 {
     public:
         Seller(std::string name, std::string surname);
-    
+        std::string getName();
+        std::string getSurname();
+        int getCode();
+
     private:
         static int m_nextCode;
         int m_code;

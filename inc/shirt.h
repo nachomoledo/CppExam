@@ -26,10 +26,10 @@ class Shirt : public Garment
         Shirt(GarmentQualityId qualityId, ShirtCollarId collarId, ShirtSleeveId sleeveId);
         virtual ~Shirt();
         std::string toString(void) override;
+        float getNetPrice(int unitPrice) override;
         static int stockItems(ShirtCollarId collarId, ShirtSleeveId sleeveId, GarmentQualityId qualityId);
         void setCollarId(ShirtCollarId collarId);
         void setSleeveId(ShirtSleeveId sleeveId);
-
     private:
         ShirtCollarId m_collarId;
         ShirtSleeveId m_sleeveId;

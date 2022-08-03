@@ -1,5 +1,7 @@
 #include "utils.h"
 #include "defines.h"
+#include <iomanip>
+#include <sstream>
 
 #define WIDTH 80
 
@@ -20,4 +22,12 @@ std::string Utils::horizontalSeparator()
 std::string Utils::backMessage()
 {
     return std::string("Presiona " + std::to_string(BACK_VALUE) + " para volver al menu principal");    
+}
+
+
+std::string Utils::floatToString(float f, uint8_t precision)
+{
+    std::stringstream stream;
+    stream << std::fixed << std::setprecision(precision) << f;
+    return stream.str();
 }

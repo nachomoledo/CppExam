@@ -7,3 +7,18 @@ Seller::Seller(std::string name, std::string surname)
 {
 
 }
+
+std::string Seller::getName()
+{
+    return m_name;
+}
+
+std::string Seller::getSurname()
+{
+    return m_surname;
+}
+
+int Seller::getCode()
+{
+    return m_code;
+}

@@ -26,6 +26,20 @@ std::string Shirt::toString()
     return str;
 }
 
+float Shirt::getNetPrice(int unitPrice)
+{
+    float retValue = 1.0*unitPrice;
+    if (ShirtSleeveId::Short == m_sleeveId)
+    {
+        retValue -= retValue*0.1;
+    }
+    if (ShirtCollarId::Mao == m_collarId)
+    {
+        retValue += retValue*0.03;
+    }
+    return retValue;
+}
+
 void Shirt::setCollarId(ShirtCollarId collarId)
 {
     m_collarId = collarId;

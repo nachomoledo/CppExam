@@ -52,14 +52,16 @@ void ExpressSalesQuoting::run()
 
 std::string ExpressSalesQuoting::getDateString(time_t t)
 {
-    tm *ltm = localtime(&t);
-    return    std::string(std::to_string( 1900 + ltm->tm_year) + "/" + std::to_string(1 + ltm->tm_mon) + "/" + std::to_string(ltm->tm_mday));
+    return "--";
+//    tm *ltm = localtime(&t);
+//    return    std::string(std::to_string( 1900 + ltm->tm_year) + "/" + std::to_string(1 + ltm->tm_mon) + "/" + std::to_string(ltm->tm_mday));
 }
 
 std::string ExpressSalesQuoting::getTimeString(time_t t)
 {
-    tm *ltm = localtime(&t);
-    return    std::string(std::to_string(ltm->tm_hour) + ":" + std::to_string(ltm->tm_min) + ":" + std::to_string(ltm->tm_sec));
+    return "--";
+//    tm *ltm = localtime(&t);
+//    return    std::string(std::to_string(ltm->tm_hour) + ":" + std::to_string(ltm->tm_min) + ":" + std::to_string(ltm->tm_sec));
 }
 
 
@@ -70,7 +72,9 @@ void ExpressSalesQuoting::update(int userInput)
     static std::shared_ptr<SalesQuotation> m_currentSalesQuotation;
     static int unitPrice = 0;
     static int quantity = 0;
-    
+    static Shirt *shirt = nullptr;
+    static Pant *pant = nullptr;
+
     m_reload = false;
 
     switch (m_uiManager.getCurrentScreen())
@@ -249,8 +253,9 @@ void ExpressSalesQuoting::update(int userInput)
         if (userInput > 0)
         {
             quantity = userInput;
-            time_t now = time(0);
-            SalesQuotation sq = SalesQuotation(getDateString(now), getTimeString(now), 1, m_currentGarment->toString(), unitPrice, quantity, unitPrice*quantity);
+            time_t now;
+            //now = time(0);
+            SalesQuotation sq = SalesQuotation(getDateString(now), getTimeString(now), 1, m_currentGarment->toString(), unitPrice, quantity, m_currentGarment->getNetPrice(unitPrice)*quantity);
             m_salesQuotationList.push_back(sq);
            *m_lastSalesQuotation = sq.toString();
             m_uiManager.changeScreen(ScreenId::TOTAL_PRICE);

@@ -22,6 +22,24 @@ std::string Pant::toString()
     return str;
 }
 
+float Pant::getNetPrice(int unitPrice)
+{
+    float retValue = 1.0*unitPrice;
+    /* Supongo que la calidad tiene prioridad, ya que 
+    /* el precio no debe modificarse si la calidad es Standard
+    /* (aunque el pantalón sea chupín)
+    */
+    if (GarmentQualityId::Premium == m_qualityId)
+    {
+        retValue += retValue*0.3;
+    }
+    if (PantTypeId::SlimFit == m_typeId)
+    {
+        retValue -= retValue*0.12;
+    }
+    return retValue;
+}
+
 int Pant::stockItems(PantTypeId typeId, GarmentQualityId qualityId)
 {
     int retValue = 2000;
