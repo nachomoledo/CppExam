@@ -42,7 +42,7 @@ int Pant::getStock()
     int retValue = 2000;
     if (m_typeId == PantTypeId::SlimFit)
     {
-        int retValue = 1500;
+        retValue = 1500;
         if (m_qualityId == GarmentQualityId::Standard)
         {
             retValue = 750;

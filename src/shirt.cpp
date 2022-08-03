@@ -78,7 +78,7 @@ int Shirt::getStock()
     }
     else if (m_sleeveId == ShirtSleeveId::Long)
     {
-        int retValue = 500;
+        retValue = 500;
         if (m_collarId == ShirtCollarId::Mao)
         {
             retValue = 150;

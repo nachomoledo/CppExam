@@ -27,5 +27,7 @@ std::string HistoryScreen::content()
         str.append("\n");
         str.append(Utils::verticalSeparator());
     }
+    str.append(Utils::backMessage());
+    str.append(Utils::verticalSeparator());
     return str;
 }

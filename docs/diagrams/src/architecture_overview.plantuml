@@ -160,6 +160,7 @@ class "User Input Manager" as  uim
 subject <|-- uim
 app o-- uim
 app o-- vend
+vend --o tienda
 app o-- tienda
 app *-- cot
 app -- prenda
