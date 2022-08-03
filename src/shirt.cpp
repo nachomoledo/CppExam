@@ -44,6 +44,70 @@ float Shirt::getNetPrice(int unitPrice)
     return retValue;
 }
 
+int Shirt::getStock()
+{
+    int retValue = 1000;
+
+    if (m_sleeveId == ShirtSleeveId::Short)
+    {
+        retValue = 500;
+        if (m_collarId == ShirtCollarId::Mao)
+        {
+            retValue = 200;
+            if (m_qualityId == GarmentQualityId::Standard)
+            {
+                retValue = 100;
+            }
+            else if (m_qualityId == GarmentQualityId::Premium)
+            {
+                retValue = 100;
+            }
+        }
+        else if (m_collarId == ShirtCollarId::Standard)
+        {
+            retValue = 300;
+            if (m_qualityId == GarmentQualityId::Standard)
+            {
+                retValue = 150;
+            }
+            else if (m_qualityId == GarmentQualityId::Premium)
+            {
+                retValue = 150;
+            }
+        }
+    }
+    else if (m_sleeveId == ShirtSleeveId::Long)
+    {
+        int retValue = 500;
+        if (m_collarId == ShirtCollarId::Mao)
+        {
+            retValue = 150;
+            if (m_qualityId == GarmentQualityId::Standard)
+            {
+                retValue = 75;
+            }
+            else if (m_qualityId == GarmentQualityId::Premium)
+            {
+                retValue = 75;
+            }
+        }
+        else if (m_collarId == ShirtCollarId::Standard)
+        {
+            retValue = 350;
+            if (m_qualityId == GarmentQualityId::Standard)
+            {
+                retValue = 175;
+            }
+            else if (m_qualityId == GarmentQualityId::Premium)
+            {
+                retValue = 175;
+            }
+        }
+    }
+
+    return retValue;
+}
+
 void Shirt::setCollarId(ShirtCollarId collarId)
 {
     m_collarId = collarId;

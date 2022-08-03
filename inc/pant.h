@@ -19,6 +19,7 @@ class Pant : public Garment
         virtual ~Pant();
         std::string toString(void) override;
         float getNetPrice(int unitPrice) override;
+        int getStock(void) override;
         static int stockItems(PantTypeId typeId, GarmentQualityId qualityId);
         void setPantTypeId(PantTypeId typeId);
 

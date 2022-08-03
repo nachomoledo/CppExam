@@ -25,7 +25,7 @@ void UIManager::clearScreen()
 UIManager::UIManager(Seller &seller, Store &store, std::shared_ptr<std::string> &salesQuotation, std::list<SalesQuotation> &listReference)
     : m_seller(seller), m_store(store)
 {
-    std::string cotizarStr = std::string(APP_NAME) + "- COTIZAR";
+    std::string cotizarStr = std::string(APP_NAME) + " - COTIZAR";
     m_screenMap.insert(std::make_pair<ScreenId, std::shared_ptr<BaseScreen>>(ScreenId::HOME,
         std::shared_ptr<BaseScreen>(new HomeScreen(std::string(APP_NAME) + " - MENU PRINCIPAL", store.getName(), store.getAddress(), seller.getName(), seller.getSurname(), std::to_string(seller.getCode())))));
     m_screenMap.insert(std::make_pair<ScreenId, std::shared_ptr<BaseScreen>>(ScreenId::SALES_QUOTE_HISTORY, 

@@ -37,6 +37,37 @@ float Pant::getNetPrice(int unitPrice)
     return retValue;
 }
 
+int Pant::getStock()
+{
+    int retValue = 2000;
+    if (m_typeId == PantTypeId::SlimFit)
+    {
+        int retValue = 1500;
+        if (m_qualityId == GarmentQualityId::Standard)
+        {
+            retValue = 750;
+        }
+        else if (m_qualityId == GarmentQualityId::Premium)
+        {
+            retValue = 750;
+        }        
+    }
+    else if (m_typeId == PantTypeId::Standard)
+    {
+        retValue = 500;
+        if (m_qualityId == GarmentQualityId::Standard)
+        {
+            retValue = 250;
+        }
+        else if (m_qualityId == GarmentQualityId::Premium)
+        {
+            retValue = 250;
+        }        
+    }
+
+    return retValue;
+}
+
 int Pant::stockItems(PantTypeId typeId, GarmentQualityId qualityId)
 {
     int retValue = 2000;

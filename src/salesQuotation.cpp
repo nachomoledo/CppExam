@@ -24,7 +24,6 @@ SalesQuotation::SalesQuotation(std::string date,
 std::string SalesQuotation::toString()
 {
     std::string str;
-    std::cout << "m_id = " << m_id << std::endl;
     str.append("Numero de identificacion: " + std::to_string(m_id));
     str.append("\n");
     str.append("Fecha y Hora de la cotizacion: " + m_date + " " + m_time);

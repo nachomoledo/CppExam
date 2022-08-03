@@ -23,6 +23,8 @@ class ExpressSalesQuoting : public IUserInputObserver
         bool m_isRunning;
         bool m_exit;
         bool m_reload;
+        bool m_printError;
+        int m_stock;
         std::shared_ptr<std::string> m_lastSalesQuotation;
         std::string getTimeString(time_t t);
         std::string getDateString(time_t t);

@@ -17,6 +17,7 @@ class Garment
         void setQualityId(GarmentQualityId qualityId);
         virtual std::string toString(void) = 0;
         virtual float getNetPrice(int unitPrice) = 0;
+        virtual int getStock() = 0;
 
     protected:
         GarmentQualityId m_qualityId;

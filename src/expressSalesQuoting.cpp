@@ -21,6 +21,10 @@ void ExpressSalesQuoting::run()
 
         while (false == m_exit)
         {
+            if ((*m_uiManager).getCurrentScreen() == ScreenId::QUANTITY)
+            {
+                std::cout << "INFORMACION:\nEXISTEN " << std::to_string(m_stock) << " UNIDADES EN STOCK DE LA PRENDA SELECCIONADA\n";
+            }
 
             if (false == m_exit)
             {
@@ -34,6 +38,12 @@ void ExpressSalesQuoting::run()
             if (true == m_reload)
             {
                 (*m_uiManager).changeScreen((*m_uiManager).getCurrentScreen());
+            }
+
+            if (true == m_printError)
+            {
+                std::cout << "No se puede realizar una cotizacion sobre una cantidad de stock no disponible o negativa\n\n";
+                m_printError = false;
             }
 
 
@@ -231,11 +241,13 @@ void ExpressSalesQuoting::update(int userInput)
     break;    
     case ScreenId::UNIT_PRICE:
     {
+        m_stock = m_currentGarment->getStock();
         //FIXME: back to home screen and positive/float values
         if (userInput > 0)
         {
             unitPrice = userInput;
             (*m_uiManager).changeScreen(ScreenId::QUANTITY);
+//            m_printStock = true;
         }
         else if (BACK_VALUE == userInput)
         {
@@ -251,7 +263,7 @@ void ExpressSalesQuoting::update(int userInput)
     {
         //FIXME: cantidad > stock
         //FIXME: back to home screen and positive values
-        if (userInput > 0)
+        if ((userInput > 0) && (userInput <= m_stock))
         {
             quantity = userInput;
             time_t now;
@@ -267,6 +279,7 @@ void ExpressSalesQuoting::update(int userInput)
         }        
         else
         {
+            m_printError = true;
             m_reload = true;
         }  
     }
