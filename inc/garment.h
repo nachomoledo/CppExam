@@ -3,7 +3,7 @@
 
 #include <string>
 
-enum class QualityId
+enum class GarmentQualityId
 {
     Unspecified,
     Standard,
@@ -13,12 +13,14 @@ enum class QualityId
 class Garment
 {
     public:
-        QualityId getQuaility(void);
-        void setQualityId(QualityId qualityId);
+        GarmentQualityId getQuaility(void);
+        void setQualityId(GarmentQualityId qualityId);
         virtual std::string toString(void) = 0;
 
+    protected:
+        GarmentQualityId m_qualityId;
+    
     private:
-        QualityId m_qualityId;
         int m_unitPrice;
         int m_stockQuantity;
 };

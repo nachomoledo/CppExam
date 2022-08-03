@@ -7,14 +7,15 @@
 enum class PantTypeId
 {
     Unspecified,
-    Classic,
+    Standard,
     SlimFit
 };
 
 class Pant : public Garment
 {
     public:
-        Pant(PantTypeId pantType = PantTypeId::Unspecified);
+        Pant(){};
+        Pant(GarmentQualityId qualityId, PantTypeId pantType);
         virtual ~Pant();
         std::string toString(void) override;
         static int stockItems(PantTypeId sleeveId);

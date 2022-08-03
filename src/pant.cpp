@@ -1,9 +1,9 @@
 #include "pant.h"
 
-Pant::Pant(PantTypeId typeId)
+Pant::Pant(GarmentQualityId qualityId, PantTypeId typeId)
     : m_typeId(typeId)
 {
-
+    m_qualityId = qualityId;
 }
 
 Pant::~Pant()
@@ -13,8 +13,13 @@ Pant::~Pant()
 
 std::string Pant::toString()
 {
-    //FIXME detalle pantalon
-    return "detalle pantalon";
+    std::string str;
+    str.append("Pantalon");
+    str.append(" - ");
+    str.append((PantTypeId::Standard == m_typeId) ? "Standard" 
+             : (PantTypeId::SlimFit == m_typeId) ? "Chupin"
+             : "No especificado");
+    return str;
 }
 
 int Pant::stockItems(PantTypeId sleeveId)

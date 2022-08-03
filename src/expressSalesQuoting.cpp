@@ -188,7 +188,7 @@ void ExpressSalesQuoting::update(int userInput)
             Pant *pant = dynamic_cast<Pant*>(m_currentGarment.get());
             if (pant)
             {
-            pant->setPantTypeId((1 == userInput) ? PantTypeId::SlimFit : PantTypeId::Classic);
+            pant->setPantTypeId((1 == userInput) ? PantTypeId::SlimFit : PantTypeId::Standard);
             m_uiManager.changeScreen(ScreenId::QUALITY);
             }
             else
@@ -211,7 +211,7 @@ void ExpressSalesQuoting::update(int userInput)
     {
         if ((1 == userInput) || (2 == userInput))
         {
-            m_currentGarment->setQualityId((1 == userInput) ? QualityId::Standard : QualityId::Premium);
+            m_currentGarment->setQualityId((1 == userInput) ? GarmentQualityId::Standard : GarmentQualityId::Premium);
             m_uiManager.changeScreen(ScreenId::UNIT_PRICE);
         }
         else if (BACK_VALUE == userInput)
@@ -250,9 +250,8 @@ void ExpressSalesQuoting::update(int userInput)
         {
             quantity = userInput;
             time_t now = time(0);
-            SalesQuotation sq = SalesQuotation(getDateString(now), getTimeString(now), 1, "detalles prenda", unitPrice, quantity, unitPrice*quantity);
+            SalesQuotation sq = SalesQuotation(getDateString(now), getTimeString(now), 1, m_currentGarment->toString(), unitPrice, quantity, unitPrice*quantity);
             m_salesQuotationList.push_back(sq);
-           //m_uiManager.setLastSalesQuotation(sq.toString());
            *m_lastSalesQuotation = sq.toString();
             m_uiManager.changeScreen(ScreenId::TOTAL_PRICE);
         }

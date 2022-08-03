@@ -22,7 +22,8 @@ enum class ShirtSleeveId
 class Shirt : public Garment
 {
     public:
-        Shirt(ShirtCollarId collarId = ShirtCollarId::Unspecified, ShirtSleeveId sleeveId = ShirtSleeveId::Unspecified);
+        Shirt(){};
+        Shirt(GarmentQualityId qualityId, ShirtCollarId collarId, ShirtSleeveId sleeveId);
         virtual ~Shirt();
         std::string toString(void) override;
         static int stockItems(ShirtCollarId collarId, ShirtCollarId sleeveId);
